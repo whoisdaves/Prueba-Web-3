@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilo.css">
+    <title>GeekyGhibli</title>
+</head>
+<body>
+    <header>
+        <div class="referencias">
+            <nav>
+                <ul>
+                    <li><img src="img/Logo.png" alt="Logo"></li>
+                    <li><a href="principal.html">Inicio</a></li>
+                    <li><a href="listaranimes.html">Animes</a></li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <h2>Inicio de Sesión</h2>
+
+    <form id="log" action="administrador.html" method="get">
+    
+        <div>
+            <label for="nombre">Nombre Usuario:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div>
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" id="contraseña" name="contraseña" required>
+        </div>
+        <input type="submit" value="Iniciar Sesión">
+        <ul>
+            <li><a href="registro.html">Aún no tienes cuenta?</a></li>
+        </ul>
+    </form>
+
+</body>
+</html>

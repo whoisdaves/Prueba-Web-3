@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="css/estilo.css">
+
+</head>
+<body>
+    <header>
+        <div class="referencias">
+            <nav>
+                <ul>
+                    <li><img src="img/Logo.png" alt="Logo"></li>
+                    <li><a href="principal.html">Inicio</a></li>
+                    <li><a href="listaranimes.html">Animes</a></li>
+                    <div class="login">
+                        <li><a href="login.html">Iniciar Sesión</a></li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <h1>Registro</h1>
+    <form action="/registrar_usuario" method="POST">
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required><br><br>
+
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña" required><br><br>
+
+        <label for="rol">Rol:</label>
+        <select id="rol" name="rol" required>
+            <option value="1">Administrador</option>
+            <option value="2">Usuario</option>
+        </select><br><br>
+        <label for="fotoperfil">Foto de Perfil</label>
+        <input type="file" id="fotoperfil">
+
+        <input type="submit" value="Registrar">
+
+    </form>
+    <script>
+        const imagenInput = document.getElementById('fotoperfil'); // Obtiene el campo de images
+
+        imagenInput.src = "/pages/images/ftperfil.jpg"
+    </script>
+</body>
+</html>

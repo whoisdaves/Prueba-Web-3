@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilo.css">
+    <title>GeekyGhibli</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="principal.html">Inicio</a></li>
+            <li><a href="registro.html">Registrate</a></li>
+        </ul>
+    </nav>
+    <h2>Animes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Fecha de Estreno</th>
+                <th>Categoría</th>
+            </tr>
+        </thead>
+        <tbody id="animes-list"></tbody>
+    </table>
+
+    <script>
+        // Función para cargar las películas al cargar la página
+        window.onload = function () {
+            // Realizar una solicitud GET a la ruta /peliculas
+            fetch('/animes')
+            .then(function(response) {
+                return response.json();
+            })
+    
+            .then(function(data) {
+                var peliculasList = document.getElementById('peliculas-list');
+                data.forEach(function(pelicula) {
+                    var row = document.createElement('tr');
+                    row.innerHTML = '<td>' + anime.nombre + '</td>' +
+                                    '<td>' + anime.descripcion + '</td>' +
+                                    '<td>' + new Date(anime.fecha).toLocaleDateString() + '</td>' +
+                                    '<td>' + anime.categoria + '</td>' + 
+                                    '<td>' +
+                                        '<button onclick="eliminarAnime(' + anime.id + ')">Eliminar</button>' +
+                                        '<button onclick="modificarAnime(' + anime.id + ')">Modificar</button>' +
+                                    '</td>';
+                    animeList.appendChild(row);
+                });
+            });
+        };
+    </script>
+
+
+    <script>
+        
+        function eliminarAnime(id) {
+            fetch('/eliminar_anime/' + id, {
+                method: 'DELETE'
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    console.log('Anime eliminado correctamente.');
+                    window.location.reload();
+                } else {
+                    console.error('Error al eliminar anime.');
+                }
+            })
+            .catch(function(error) {
+                console.error('Error en la solicitud:', error);
+            });
+        }
+    
+    </script>
+
+    <script>
+        function modificarAnime(id) {
+            window.location.href = '/modificar_anime.html?id=' + id;
+        }
+    </script>
+</body>
+</html>

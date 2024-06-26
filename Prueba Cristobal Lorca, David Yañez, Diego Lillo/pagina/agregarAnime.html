@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="css/estilo.css"> 
+    <title>Agregar Anime</title> 
+</head>
+<body>
+    <header>
+        <div class="referencias">
+            <nav>
+                <ul id="paginas">
+                    <li><img src="img/Logo.png" alt="Logo"></li>    
+                    <li><a href="principal.html">Inicio</a></li>
+                    <li><a href="listaranimes.html">Animes</a></li>
+                    <li><a href="index.html">Lista de Usuarios</a></li>
+                    <input type="text" id="search" name="search" placeholder="Buscar...">
+                    <button type="submit">Buscar</button>
+                </ul>        
+            </nav>   
+        </div>
+    </header>
+    <h2>Agregar Anime</h2> 
+    <form id="modificar-form" action="/agregar_anime" method="get"> 
+        <input type="hidden" id="anime-id" name="id"> 
+        <div>
+            <label for="nombre">Nombre:</label> 
+            <input type="text" id="nombre" name="nombre" required> 
+        </div>
+        <div>
+            <label for="descripcion">Descripción:</label> 
+            <input type="text" id="descripcion" name="descripcion" required> 
+        </div>
+        <div>
+            <label for="fecha">Fecha de Estreno:</label>
+            <input type="date" id="fecha" name="fecha" required>
+        </div>
+        <div>
+            <label for="categoria">Categoria:</label> 
+            <select id="categoria" name="categoria" required> 
+                <option value="Aventura">Aventura</option>
+                <option value="Acción">Acción</option>
+                <option value="Comedia">Comedia</option>
+                <option value="Drama">Drama</option>
+                <option value="Ciencia ficción">Ciencia ficción</option>
+                <option value="Fantasía">Fantasía</option>
+            </select>
+        </div>
+        <button type="submit">Completado</button> 
+    </form>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search); 
+        const animeId = urlParams.get('id'); 
+        // Obtener el formulario y los campos
+        const modificarForm = document.getElementById('modificar-form'); 
+        const idInput = document.getElementById('anime-id'); 
+        const nombreInput = document.getElementById('nombre'); 
+        const descripcionInput = document.getElementById('descripcion'); 
+        const fechaInput = document.getElementById('fecha'); 
+        const categoriaInput = document.getElementById('categoria'); 
+
+        
+        fetch('/Anime/' + animeId) 
+            .then(response => response.json()) 
+            .then(anime => {
+        
+                idInput.value = anime.id;
+                nombreInput.value = anime.nombre;
+                descripcionInput.value = anime.descripcion;
+                fechaInput.value = anime.fecha.split('T')[0];
+                categoriaInput.value = anime.categoria;
+            })
+    </script>
+</body>
+</html>
